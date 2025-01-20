@@ -10,24 +10,26 @@
 		with software development.
 	</p>
 </div>
-<div class="flex flex-col gap-6 bg-gray-200 px-96 py-12">
-	<h2 class="text-3xl">Administration</h2>
-	<ul class="flex flex-col gap-6">
-		<li class="flex flex-col gap-4">
-			<h3 class="text-2xl">Matthew Arthur</h3>
-			<p class="ml-4 text-xl">
-				Matthew is the lead of software development and sound design. His work includes the
-				maintanance of the radio station and its website, and the sound design and structuring of
-				radio shows.
-			</p>
-		</li>
-		<li class="flex flex-col gap-4">
-			<h3 class="text-2xl">Duncan Blair</h3>
-			<p class="ml-4 text-xl">
-				Duncan is the lead of club management and sound technology. His work includes scheduling
-				radio programs and maintaining sound equipment, along with behind-the-scenes emails and
-				management.
-			</p>
-		</li>
-	</ul>
+<div class="flex flex-col items-center bg-gray-200 px-10 py-12">
+	<div class="flex max-w-screen-xl flex-col gap-6">
+		<h2 class="text-3xl">Administration</h2>
+		<ul class="flex flex-col gap-6">
+			<li class="flex flex-col gap-4">
+				<h3 class="text-2xl">Matthew Arthur</h3>
+				<p class="ml-4 text-xl">
+					Matthew is the lead of software development and sound design. His work includes the
+					maintanance of the radio station and its website, and the sound design and structuring of
+					radio shows.
+				</p>
+			</li>
+			<li class="flex flex-col gap-4">
+				<h3 class="text-2xl">Duncan Blair</h3>
+				<p class="ml-4 text-xl">
+					Duncan is the lead of club management and sound technology. His work includes scheduling
+					radio programs and maintaining sound equipment, along with behind-the-scenes emails and
+					management.
+				</p>
+			</li>
+		</ul>
+	</div>
 </div>
