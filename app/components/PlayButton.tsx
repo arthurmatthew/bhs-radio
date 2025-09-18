@@ -12,7 +12,7 @@ export const PlayButton = () => {
         audioRef.current.pause();
       } else {
         audioRef.current.src =
-          "https://live.bhsradio.com/listen/test/radio.mp3";
+          "https://live.bhsradio.com/listen/radio_club_autumn_mix/radio.mp3";
         audioRef.current.play();
       }
       setIsPlaying((previouslyPlaying) => !previouslyPlaying);

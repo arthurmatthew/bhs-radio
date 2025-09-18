@@ -25,7 +25,7 @@ export const NowPlaying = () => {
 
   return (
     <div className="flex gap-4">
-      <div className="w-48 aspect-square flex items-center justify-center bg-gray-100">
+      <div className="w-48 aspect-square flex items-center justify-center bg-gray-100 shadow-2xl">
         {stationMessage ? (
           <img
             className="h-11/12"

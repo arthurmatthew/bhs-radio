@@ -29,7 +29,9 @@ export default function Home() {
               <NowPlaying />
               <div className="flex sm:flex-col gap-2 text-center">
                 <a
-                  href="https://live.bhsradio.com/listen/test/radio.mp3"
+                  href={
+                    "https://live.bhsradio.com/listen/radio_club_autumn_mix/radio.mp3"
+                  }
                   target="_blank"
                   className="px-8 py-4 bg-gray-200 rounded-md"
                 >
