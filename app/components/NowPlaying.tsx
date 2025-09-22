@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { SSEMessage } from "@/app/types/sse";
 import { useNowPlaying } from "../hooks/useNowPlaying";
 
 export const NowPlaying = () => {
@@ -31,33 +30,24 @@ export const NowPlaying = () => {
             <h2 className="opacity-50 font-light">Updated {timeLeft}s ago</h2>
           )}
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 sm:items-start items-end">
             <div className="sm:w-48 w-20 h-fit flex items-center justify-center">
               {stationMessage ? (
                 <img src={stationMessage?.pub.data.np.now_playing.song.art} />
               ) : (
-                <div className="w-full h-full bg-zinc-300 animate-pulse" />
+                <div className="sm:w-48 sm:h-48 w-20 h-20 bg-zinc-300 animate-pulse" />
               )}
             </div>
             <div className="flex flex-col justify-between">
               {stationMessage ? (
-                <div className=" max-w-96">
-                  <div className="sm:hidden flex flex-row gap-3 items-center">
-                    <h3 className="font-semibold max-w-96 text-2xl sm:text-3xl">
-                      {stationMessage?.pub.data.np.now_playing.song.title}
-                    </h3>
-                    <div className="bg-zinc-300 rounded-full w-1 h-1" />
-                    <h4 className="text-xl opacity-50">
-                      {stationMessage?.pub.data.np.now_playing.song.artist}
-                    </h4>
-                  </div>
-                  <h3 className="font-semibold hidden sm:block text-2xl sm:text-3xl">
+                <div className="max-w-96">
+                  <h3 className="font-semibold text-2xl sm:text-3xl">
                     {stationMessage?.pub.data.np.now_playing.song.title}
                   </h3>
-                  <h4 className="text-xl hidden sm:block opacity-50">
+                  <h4 className="opacity-50 truncate max-w-64 sm:max-w-none">
                     {stationMessage?.pub.data.np.now_playing.song.artist}
                   </h4>
-                  <h4 className="text-xl opacity-50">
+                  <h4 className="opacity-50 truncate max-w-64 sm:max-w-none">
                     {stationMessage?.pub.data.np.now_playing.song.album}
                   </h4>
                 </div>
@@ -77,7 +67,7 @@ export const NowPlaying = () => {
             </div>
           </div>
         </div>
-        <div className="flex sm:flex-col gap-2 text-center">
+        <div className="flex text-sm sm:text-base sm:flex-col gap-2 text-center">
           <a target="_blank" className="px-8 py-4 bg-zinc-200 rounded-md">
             View Program
           </a>
@@ -89,22 +79,43 @@ export const NowPlaying = () => {
           </button>
         </div>
       </div>
-      <div className="flex justify-between">
-        <div className="flex gap-2 opacity-80">
-          <h1>UP NEXT:</h1>
-          <div className="flex flex-col">
-            <h2 className="truncate w-64">
-              {stationMessage?.pub.data.np.playing_next.song.title}
-            </h2>
-            <h2 className="opacity-50">
-              {stationMessage?.pub.data.np.playing_next.song.artist}
-            </h2>
+      {stationMessage ? (
+        <div className="flex justify-between">
+          <div className="flex gap-2 opacity-80">
+            <h1 className="whitespace-nowrap">UP NEXT:</h1>
+            <div className="flex flex-col">
+              <h2 className="truncate w-24 sm:w-64">
+                {stationMessage?.pub.data.np.playing_next.song.title}
+              </h2>
+              <h2 className="opacity-50">
+                {stationMessage?.pub.data.np.playing_next.song.artist}
+              </h2>
+            </div>
+          </div>
+          <div className="flex gap-2 opacity-40">
+            {stationMessage?.pub.data.np.now_playing.playlist}
           </div>
         </div>
-        <div className="flex gap-2 opacity-40">
-          {stationMessage?.pub.data.np.now_playing.playlist}
+      ) : (
+        <div className="flex justify-between">
+          <div className="flex gap-2 opacity-80">
+            <h1 className="bg-zinc-200 w-28 animate-pulse rounded-md">
+              &nbsp;
+            </h1>
+            <div className="flex flex-col gap-1">
+              <h2 className="bg-zinc-200 w-28 animate-pulse rounded-md">
+                &nbsp;
+              </h2>
+              <h2 className="bg-zinc-200 w-28 animate-pulse rounded-md">
+                &nbsp;
+              </h2>
+            </div>
+          </div>
+          <div className="bg-zinc-200 inline-block w-28 animate-pulse rounded-md">
+            &nbsp;
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

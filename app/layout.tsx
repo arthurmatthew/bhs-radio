@@ -5,6 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Link from "next/link";
 import Image from "next/image";
 import { PlayButton } from "./components/PlayButton";
+import Head from "next/head";
 
 const inter = JetBrains_Mono({
   variable: "--font-inter",
@@ -18,8 +19,8 @@ const alike = Alike_Angular({
 });
 
 export const metadata: Metadata = {
-  title: "BHS Radio Club",
-  description: "KBHS, live from the BHS Radio Club",
+  title: "KBHS",
+  description: "Live from Ballard High School's Radio Club.",
 };
 
 export default function RootLayout({
@@ -29,6 +30,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+      </Head>
       <body className={`${alike.variable} ${inter.variable} antialiased`}>
         <header className="font-(family-name:--font-inter) bg-black text-white relative">
           <div className="flex justify-between overflow-x-scroll scrollbar-hidden items-center text-lg">
@@ -51,7 +72,9 @@ export default function RootLayout({
               </ul>
             </div>
             <ul className="flex items-center gap-6 px-4 whitespace-nowrap">
-              <li>JOIN US</li>
+              <li>
+                <Link href={"/info/club"}>JOIN US</Link>
+              </li>
               <li>DONATE</li>
             </ul>
           </div>
@@ -60,7 +83,13 @@ export default function RootLayout({
         {children}
         <footer className="bg-black text-white font-(family-name:--font-inter)">
           <div className="grid md:grid-cols-6 grid-cols-2 lg:grid-rows-2 grid-rows-3 px-6 lg:px-36 py-12">
-            <Image src="/kbhs.png" width={100} height={100} alt="KBHS" />
+            <div>
+              <Image src="/kbhs.png" width={100} height={100} alt="KBHS" />
+              <p className="text-xs opacity-75">
+                Updated Sep. 2025. Designed by Matthew Arthur.
+              </p>
+            </div>
+
             <ul>
               <li>ABOUT</li>
               <li>CONTACT</li>
@@ -77,13 +106,29 @@ export default function RootLayout({
               <li>PRIVACY POLICY</li>
             </ul>
             <ul>
-              <li>CLUB INFO</li>
-              <li>STAFF CONTACTS</li>
-              <li>BHS CLUB PAGE</li>
+              <li>
+                <Link href="/info/club">CLUB INFO</Link>
+              </li>
+              <li>
+                <Link href="/info/staff">STAFF CONTACTS</Link>
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ballardhs.seattleschools.org/student-life/clubs-and-organizations/"
+                >
+                  BHS CLUB PAGE
+                </a>
+              </li>
             </ul>
             <div className="flex gap-4">
+              <a
+                target="_blank"
+                href={"https://www.instagram.com/bhs_radio_club/"}
+              >
+                <i className="bi bi-instagram text-4xl" />
+              </a>
               <i className="bi bi-youtube text-4xl" />
-              <i className="bi bi-instagram text-4xl" />
             </div>
           </div>
         </footer>

@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <main className="font-(family-name:--font-inter)">
-        <section className="mt-20 max-w-7xl items-center text-center flex flex-col gap-4 mx-auto px-8">
+        <section className="sm:mt-20 mt-10 max-w-7xl items-center text-center flex flex-col gap-4 mx-auto px-8">
           <h1 className="flex flex-col text-5xl lg:text-7xl font-(family-name:--font-alike)">
             Listen to Ballard's music.
           </h1>
@@ -23,7 +23,7 @@ export default function Home() {
               <h1 className="font-(family-name:--font-alike) text-4xl">
                 On Air
               </h1>
-              <ul className="flex items-center text-sm underline gap-4 opacity-70">
+              <ul className="flex flex-col sm:flex-row sm:items-center items-end text-sm underline sm:gap-4 gap-1 opacity-70">
                 <li>
                   <Link
                     href={
@@ -33,7 +33,7 @@ export default function Home() {
                     Direct Link
                   </Link>
                 </li>
-                <li>
+                <li className="hidden sm:block">
                   <div className="bg-zinc-500 rounded-full w-1 h-1" />
                 </li>
                 <li>Alternate Mount</li>
