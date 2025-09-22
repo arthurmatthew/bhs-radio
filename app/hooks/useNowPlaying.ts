@@ -12,7 +12,7 @@ export const useNowPlaying = (): [
   const sseUriParams = new URLSearchParams({
     cf_connect: JSON.stringify({
       subs: {
-        "station:radio_club_autumn_mix": { recover: true },
+        "station:kbhs_main": { recover: true },
       },
     }),
   });

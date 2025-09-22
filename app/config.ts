@@ -1,12 +1,11 @@
 // ! not in use swap to ENV
 
-const DIRECT_LINK =
-  "https://live.bhsradio.com/listen/radio_club_autumn_mix/radio.mp3";
+const DIRECT_LINK = "https://live.bhsradio.com/listen/kbhs_main/radio.mp3";
 
 const SSE_LINK = "https://live.bhsradio.com/api/live/nowplaying/sse";
 const SSE_CONFIG = {
   subs: {
-    "station:radio_club_autumn_mix": { recover: true },
+    "station:kbhs_main": { recover: true },
   },
 };
 

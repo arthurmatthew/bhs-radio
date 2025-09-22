@@ -12,7 +12,7 @@ export const PlayButton = () => {
         audioRef.current.pause();
       } else {
         audioRef.current.src =
-          "https://live.bhsradio.com/listen/radio_club_autumn_mix/radio.mp3";
+          "https://live.bhsradio.com/listen/kbhs_main/radio.mp3";
         audioRef.current.play();
       }
       setIsPlaying((previouslyPlaying) => !previouslyPlaying);
@@ -22,11 +22,13 @@ export const PlayButton = () => {
   return (
     <>
       <audio ref={audioRef} src="/" />
-      <button
-        onClick={togglePlay}
-        className="px-12 rounded-md w-38 py-4 bg-red-700 text-white"
-      >
-        {isPlaying ? "Pause" : "Play"}
+      <button onClick={togglePlay} className="flex items-center gap-1 h-full">
+        {!isPlaying ? (
+          <i className="bi bi-play-fill" />
+        ) : (
+          <i className="bi bi-stop-fill" />
+        )}
+        <p>LISTEN LIVE</p>
       </button>
     </>
   );

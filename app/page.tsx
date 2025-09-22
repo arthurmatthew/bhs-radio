@@ -1,5 +1,5 @@
+import Link from "next/link";
 import { NowPlaying } from "./components/NowPlaying";
-import { PlayButton } from "./components/PlayButton";
 
 export default function Home() {
   return (
@@ -9,62 +9,55 @@ export default function Home() {
           <h1 className="flex flex-col text-5xl lg:text-7xl font-(family-name:--font-alike)">
             Listen to Ballard's music.
           </h1>
-          <h2 className="md:text-2xl text-lg">
-            KBHS is ran by students out of Ballard High School's Radio Club.
-            This web-hosted radio station isn't directly affiliated with Ballard
-            High School or the Seattle Public Schools district.
-          </h2>
-          <div className="flex sm:flex-row flex-col gap-2 sm:gap-4 text-xl sm:mt-10">
-            <PlayButton />
-            <a href="#about-us" className="bg-gray-200 px-12 rounded-md py-4">
-              Learn More
-            </a>
+          <p className="opacity-50">
+            KBHS is not officially affiliated with SPS or Ballard High School.
+          </p>
+          <div className="rounded-full bg-red-700 text-white text-sm border-red-400 border-2 py-2 px-4">
+            <p>Site under construction, certain links may not work</p>
           </div>
         </section>
-        <div className="w-7/12 h-px bg-black mx-auto my-10 sm:my-20 opacity-10 px-8" />
+        <div className="w-7/12 h-px bg-black mx-auto my-6 sm:my-12 opacity-10 px-8" />
         <section className="max-w-4xl mx-auto px-8">
           <div className="flex-col flex gap-4">
-            <h1 className="font-(family-name:--font-alike) text-4xl">On Air</h1>
-            <div className="flex sm:flex-row sm:gap-0 gap-4 flex-col sm:justify-between sm:items-end">
-              <NowPlaying />
-              <div className="flex sm:flex-col gap-2 text-center">
-                <a
-                  href={
-                    "https://live.bhsradio.com/listen/radio_club_autumn_mix/radio.mp3"
-                  }
-                  target="_blank"
-                  className="px-8 py-4 bg-gray-200 rounded-md"
-                >
-                  Direct Link
-                </a>
-                <button
-                  disabled
-                  className="px-8 disabled:opacity-50 py-4 bg-gray-200 rounded-md"
-                >
-                  Other Options
-                </button>
-              </div>
+            <div className="justify-between items-center flex">
+              <h1 className="font-(family-name:--font-alike) text-4xl">
+                On Air
+              </h1>
+              <ul className="flex items-center text-sm underline gap-4 opacity-70">
+                <li>
+                  <Link
+                    href={
+                      "https://live.bhsradio.com/listen/kbhs_main/radio.mp3"
+                    }
+                  >
+                    Direct Link
+                  </Link>
+                </li>
+                <li>
+                  <div className="bg-zinc-500 rounded-full w-1 h-1" />
+                </li>
+                <li>Alternate Mount</li>
+              </ul>
             </div>
+
+            <NowPlaying />
           </div>
         </section>
-        <section className="mt-20 bg-red-800 text-white py-16">
-          <div className="flex px-8 flex-col gap-8 max-w-7xl mx-auto">
-            <h1
-              id="about-us"
-              className="font-(family-name:--font-alike) text-4xl sm:text-6xl"
-            >
-              About Us
-            </h1>
-            <p className="text-2xl">
-              I'm trying to make the deadline; you can read more in a few days.
-              Sorry
-            </p>
-          </div>
+        <div className="w-7/12 h-px bg-black mx-auto my-6 sm:my-12 opacity-10 px-8" />
+        <section className="max-w-7xl mb-20 px-6 mx-auto">
+          <h1 className="font-(family-name:--font-alike) text-4xl">
+            A note from us:
+          </h1>
+          <p className="my-10 text-xl">
+            KBHS is a student-run project with the goal of giving students a
+            platform to share their music and ideas. We work to build a music
+            community for Ballard that connects students and represents our
+            school. We play music, talk shows, local news, and more. If you want
+            to learn more, check out our Instagram and come to our meetings in
+            Ms. Povey’s room after school on Wednesdays.
+          </p>
         </section>
       </main>
-      <footer className="font-(family-name:--font-inter) my-10">
-        <h6 className="text-center opacity-20">Thanks from BHS Radio Club</h6>
-      </footer>
     </>
   );
 }
