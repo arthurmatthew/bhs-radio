@@ -63,19 +63,27 @@ export default function RootLayout({
                 </div>
               </Link>
               <ul className="flex items-center gap-6 whitespace-nowrap">
-                <li>
+                <li className="cursor-pointer">
                   <PlayButton />
                 </li>
-                <li>SCHEDULE</li>
-                <li>ARTICLES</li>
-                <li>VIDEOS</li>
+                <li>
+                  <Link href="/schedule">SCHEDULE</Link>
+                </li>
+                <li>
+                  <Link href="/articles">ARTICLES</Link>
+                </li>
+                <li>
+                  <Link href="/videos">VIDEOS</Link>
+                </li>
               </ul>
             </div>
             <ul className="flex items-center gap-6 px-4 whitespace-nowrap">
               <li>
                 <Link href={"/info/club"}>JOIN US</Link>
               </li>
-              <li>DONATE</li>
+              <li>
+                <Link href="/donate">DONATE</Link>
+              </li>
             </ul>
           </div>
           <div className="pointer-events-none absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-black to-transparent md:hidden"></div>
@@ -91,19 +99,37 @@ export default function RootLayout({
             </div>
 
             <ul>
-              <li>ABOUT</li>
-              <li>CONTACT</li>
-              <li>JOIN US</li>
+              <li>
+                <Link href="/about">ABOUT</Link>
+              </li>
+              <li>
+                <Link href="/contact">CONTACT</Link>
+              </li>
+              <li>
+                <Link href="/club">JOIN US</Link>
+              </li>
             </ul>
             <ul>
-              <li>FAQ</li>
-              <li>SUPPORT US</li>
-              <li>EVENTS</li>
+              <li>
+                <Link href="/faq">FAQ</Link>
+              </li>
+              <li>
+                <Link href="/donate">SUPPORT US</Link>
+              </li>
+              <li>
+                <Link href="/events">EVENTS</Link>
+              </li>
             </ul>
             <ul>
-              <li>BECOME A SPONSOR</li>
-              <li>TERMS OF SERVICE</li>
-              <li>PRIVACY POLICY</li>
+              <li>
+                <Link href="/sponsor">BECOME A SPONSOR</Link>
+              </li>
+              <li>
+                <Link href="/tos">TERMS OF SERVICE</Link>
+              </li>
+              <li>
+                <Link href="/privacy-policy">PRIVACY POLICY</Link>
+              </li>
             </ul>
             <ul>
               <li>

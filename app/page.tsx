@@ -1,18 +1,36 @@
 import Link from "next/link";
 import { NowPlaying } from "./components/NowPlaying";
+import { SSEData, SSEMessage } from "./types/sse";
 
-export default function Home() {
+export default async function Home() {
+  const staticJsonUri =
+    "https://live.bhsradio.com/api/nowplaying_static/kbhs_main.json";
+  const res = await fetch(staticJsonUri, { cache: "no-store" });
+
+  const data = (await res.json()) as SSEData;
+  const initialData: SSEMessage = {
+    pub: {
+      data: { np: data, current_time: null, triggers: null },
+      offset: 0,
+    },
+    channel: "",
+  };
+
   return (
     <>
       <main className="font-(family-name:--font-inter)">
         <section className="sm:mt-20 mt-10 max-w-7xl items-center text-center flex flex-col gap-4 mx-auto px-8">
-          <h1 className="flex flex-col text-5xl lg:text-7xl font-(family-name:--font-alike)">
-            Listen to Ballard's music.
+          <h1 className="text-5xl lg:text-7xl font-(family-name:--font-alike)">
+            Listen to{" "}
+            <span className="bg-gradient-to-r inline-block from-red-500 to-red-700 bg-clip-text text-transparent drop-shadow-md drop-shadow-red-500/25">
+              Ballard's
+            </span>{" "}
+            music.
           </h1>
           <p className="opacity-50">
             KBHS is not officially affiliated with SPS or Ballard High School.
           </p>
-          <div className="rounded-full bg-red-700 text-white text-sm border-red-400 border-2 py-2 px-4">
+          <div className="rounded-full bg-red-700/90 text-white text-sm border-red-400 border-2 py-2 px-4 shadow-md shadow-red-400/50">
             <p>Site under construction, certain links may not work</p>
           </div>
         </section>
@@ -40,7 +58,7 @@ export default function Home() {
               </ul>
             </div>
 
-            <NowPlaying />
+            <NowPlaying initialData={initialData} />
           </div>
         </section>
         <div className="w-7/12 h-px bg-black mx-auto my-6 sm:my-12 opacity-10 px-8" />

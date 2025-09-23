@@ -108,9 +108,22 @@ export interface SSEMessage {
   pub: {
     data: {
       np: SSEData;
-      triggers: any[];
-      current_time: number;
+      triggers: any[] | null; // both null in case of custom SSE object from static api
+      current_time: number | null;
     };
     offset: number;
   };
+}
+
+export interface ScheduleItem {
+  id: number;
+  type: string;
+  name: string;
+  title: string;
+  description: string;
+  start_timestamp: number;
+  start: string;
+  end_timestamp: number;
+  end: string;
+  is_now: boolean;
 }

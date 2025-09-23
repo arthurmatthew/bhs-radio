@@ -1,11 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useNowPlaying } from "../hooks/useNowPlaying";
+import { SSEMessage } from "../types/sse";
 
-export const NowPlaying = () => {
-  const [stationMessage, serverTime] = useNowPlaying();
-
-  const [timeLeft, setTimeLeft] = useState(0);
+export const NowPlaying = ({
+  initialData,
+}: {
+  initialData: SSEMessage | null;
+}) => {
+  const [stationMessage, serverTime] = useNowPlaying(initialData);
+  const [timeSinceUpdate, setTimeSinceUpdate] = useState(0);
 
   useEffect(() => {
     const updateTime = () => {
@@ -14,7 +18,7 @@ export const NowPlaying = () => {
       const now = Math.floor(Date.now() / 1000);
       const diff = now - serverTime;
 
-      setTimeLeft(diff);
+      setTimeSinceUpdate(diff);
     };
 
     const intervalId = setInterval(updateTime, 1000);
@@ -27,7 +31,9 @@ export const NowPlaying = () => {
       <div className="flex sm:flex-row sm:gap-0 gap-4 flex-col sm:justify-between sm:items-end">
         <div className="flex flex-col gap-4">
           {serverTime && (
-            <h2 className="opacity-50 font-light">Updated {timeLeft}s ago</h2>
+            <h2 className="opacity-50 font-light">
+              Updated {timeSinceUpdate}s ago
+            </h2>
           )}
 
           <div className="flex gap-4 sm:items-start items-end">
@@ -85,10 +91,11 @@ export const NowPlaying = () => {
             <h1 className="whitespace-nowrap">UP NEXT:</h1>
             <div className="flex flex-col">
               <h2 className="truncate w-24 sm:w-64">
-                {stationMessage?.pub.data.np.playing_next.song.title}
+                {stationMessage?.pub.data.np.playing_next.song.title ??
+                  "nothing queued"}
               </h2>
               <h2 className="opacity-50">
-                {stationMessage?.pub.data.np.playing_next.song.artist}
+                {stationMessage?.pub.data.np.playing_next.song.artist ?? ""}
               </h2>
             </div>
           </div>

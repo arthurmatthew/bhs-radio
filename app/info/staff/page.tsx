@@ -24,10 +24,11 @@ export default function Staff() {
             <h3 className="opacity-50">duncan@bhsradio.com</h3>
           </div>
           <p className="text-lg mb-10">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod ex
-            commodi quaerat aperiam rerum ab adipisci! Quae similique
-            repellendus veritatis saepe, distinctio quod velit facilis illo?
-            Saepe, excepturi! Fugit, quam!
+            My name is Duncan and I am super excited for this next year of Radio
+            Club. I love music and I’m very passionate about fostering a music
+            community for Ballard and creating a platform for students to share
+            their music and projects. I hope that KBHS is able to have a
+            meaningful impact and bring people across the school together.
           </p>
           <h2 className="text-2xl text-red-700">NICK WHITE</h2>
           <p className="text-lg mb-10">
