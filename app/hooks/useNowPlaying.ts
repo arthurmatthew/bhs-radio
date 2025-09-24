@@ -3,13 +3,18 @@ import { SSEData, SSEMessage } from "../types/sse";
 
 export const useNowPlaying = (
   initialData: SSEMessage | null
-): [stationMessage: SSEMessage | null, serverTime: number | null] => {
+): [
+  stationMessage: SSEMessage | null,
+  serverTime: number | null,
+  isLive: boolean
+] => {
   const [stationMessage, setStationMessage] = useState<SSEMessage | null>(
     initialData ?? null
   );
   const [serverTime, setServerTime] = useState<number | null>(
     initialData ? Math.floor(Date.now() / 1000) : null
   );
+  const [isLive, setIsLive] = useState(false);
 
   const pollingRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -30,7 +35,6 @@ export const useNowPlaying = (
     try {
       const res = await fetch(staticJsonUri, { cache: "no-cache" });
       if (!res.ok) {
-        console.warn("Static JSON fetch failed", res.status);
         return;
       }
 
@@ -45,7 +49,7 @@ export const useNowPlaying = (
       });
       setServerTime(Math.floor(Date.now() / 1000));
     } catch (err) {
-      console.error("Error fetching static JSON", err);
+      console.error("[Fallback] Error fetching static JSON", err);
     }
   };
 
@@ -53,22 +57,31 @@ export const useNowPlaying = (
     const eventSource = new EventSource(nowPlayingSseUri);
 
     eventSource.onmessage = (event) => {
-      if (event.data && event.data !== "{}") {
-        const sseMessage: SSEMessage = JSON.parse(event.data);
+      try {
+        if (event.data && event.data !== "{}") {
+          const sseMessage: SSEMessage = JSON.parse(event.data);
+          if (!sseMessage.pub) return;
 
-        if (!sseMessage.pub) return;
+          setIsLive(true);
+          setServerTime(sseMessage.pub.data.current_time);
+          setStationMessage(sseMessage);
 
-        setServerTime(sseMessage.pub.data.current_time);
-        setStationMessage(sseMessage);
+          if (pollingRef.current) {
+            clearInterval(pollingRef.current);
+            pollingRef.current = null;
+          }
+        }
+      } catch (err) {
+        console.error(err);
       }
     };
 
     eventSource.onerror = (err) => {
-      console.error("SSE connection error", err);
+      console.error("[SSE] Connection error:", err);
       eventSource.close();
+      setIsLive(false);
 
       if (!pollingRef.current) {
-        console.log("Falling back to static JSON");
         fetchStaticJson();
         pollingRef.current = setInterval(fetchStaticJson, 30000);
       }
@@ -83,5 +96,5 @@ export const useNowPlaying = (
     };
   }, []);
 
-  return [stationMessage, serverTime];
+  return [stationMessage, serverTime, isLive];
 };

@@ -7,14 +7,16 @@ export default async function Home() {
     "https://live.bhsradio.com/api/nowplaying_static/kbhs_main.json";
   const res = await fetch(staticJsonUri, { cache: "no-store" });
 
-  const data = (await res.json()) as SSEData;
-  const initialData: SSEMessage = {
-    pub: {
-      data: { np: data, current_time: null, triggers: null },
-      offset: 0,
-    },
-    channel: "",
-  };
+  const data = res.ok ? ((await res.json()) as SSEData) : null;
+  const initialData: SSEMessage | null = data
+    ? {
+        pub: {
+          data: { np: data, current_time: null, triggers: null },
+          offset: 0,
+        },
+        channel: "",
+      }
+    : null;
 
   return (
     <>

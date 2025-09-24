@@ -2,13 +2,14 @@
 import { useEffect, useState } from "react";
 import { useNowPlaying } from "../hooks/useNowPlaying";
 import { SSEMessage } from "../types/sse";
+import Image from "next/image";
 
 export const NowPlaying = ({
   initialData,
 }: {
   initialData: SSEMessage | null;
 }) => {
-  const [stationMessage, serverTime] = useNowPlaying(initialData);
+  const [stationMessage, serverTime, isLive] = useNowPlaying(initialData);
   const [timeSinceUpdate, setTimeSinceUpdate] = useState(0);
 
   useEffect(() => {
@@ -26,22 +27,35 @@ export const NowPlaying = ({
     return () => clearInterval(intervalId);
   }, [serverTime]);
 
-  return (
+  return stationMessage?.pub.data.np.is_online ? (
     <div className="flex flex-col gap-4">
       <div className="flex sm:flex-row sm:gap-0 gap-4 flex-col sm:justify-between sm:items-end">
         <div className="flex flex-col gap-4">
           {serverTime && (
-            <h2 className="opacity-50 font-light">
-              Updated {timeSinceUpdate}s ago
-            </h2>
+            <div className="flex items-center">
+              <i
+                className={`bi bi-dot text-3xl ${
+                  isLive
+                    ? "text-green-600 drop-shadow-green-300 drop-shadow-sm animate-pulse"
+                    : "text-zinc-500"
+                }`}
+              />
+              <h2 className="opacity-50 font-light">
+                Updated {timeSinceUpdate}s ago
+              </h2>
+            </div>
           )}
 
           <div className="flex gap-4 sm:items-start items-end">
-            <div className="sm:w-48 w-20 h-fit flex items-center justify-center">
+            <div className="sm:w-48 w-20 h-20 sm:h-48 relative flex items-center justify-center">
               {stationMessage ? (
-                <img src={stationMessage?.pub.data.np.now_playing.song.art} />
+                <Image
+                  fill
+                  alt={stationMessage?.pub.data.np.now_playing.song.album}
+                  src={stationMessage?.pub.data.np.now_playing.song.art}
+                />
               ) : (
-                <div className="sm:w-48 sm:h-48 w-20 h-20 bg-zinc-300 animate-pulse" />
+                <div className="h-full w-full bg-zinc-300 animate-pulse" />
               )}
             </div>
             <div className="flex flex-col justify-between">
@@ -124,5 +138,7 @@ export const NowPlaying = ({
         </div>
       )}
     </div>
+  ) : (
+    <h1>The main station is currently offline.</h1>
   );
 };

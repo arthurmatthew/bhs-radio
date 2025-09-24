@@ -1,7 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "live.bhsradio.com",
+        port: "",
+        pathname: "/api/station/kbhs_main/art/**",
+        search: "",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
