@@ -66,7 +66,7 @@ export default function RootLayout({
                 <li className="cursor-pointer">
                   <PlayButton />
                 </li>
-                <li>
+                {/* <li>
                   <Link href="/schedule">SCHEDULE</Link>
                 </li>
                 <li>
@@ -74,7 +74,7 @@ export default function RootLayout({
                 </li>
                 <li>
                   <Link href="/videos">VIDEOS</Link>
-                </li>
+                </li> */}
               </ul>
             </div>
             <ul className="flex items-center gap-6 px-4 whitespace-nowrap">
@@ -82,7 +82,7 @@ export default function RootLayout({
                 <Link href={"/info/club"}>JOIN US</Link>
               </li>
               <li>
-                <Link href="/donate">DONATE</Link>
+                <Link href="/info/staff">OUR STAFF</Link>
               </li>
             </ul>
           </div>
@@ -94,7 +94,7 @@ export default function RootLayout({
             <div>
               <Image src="/kbhs.png" width={100} height={100} alt="KBHS" />
               <p className="text-xs opacity-75">
-                Updated Sep. 2025. Designed by Matthew Arthur.
+                Updated Mar. 2026. Designed by Matthew Arthur.
               </p>
             </div>
 

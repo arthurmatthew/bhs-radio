@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { NowPlaying } from "./components/NowPlaying";
 import { SSEData, SSEMessage } from "./types/sse";
+import Image from "next/image";
+import { SunnyHillBanner } from "./components/SunnyHillBanner";
 
 export default async function Home() {
   const staticJsonUri =
@@ -21,6 +23,7 @@ export default async function Home() {
   return (
     <>
       <main className="font-(family-name:--font-inter)">
+        <SunnyHillBanner />
         <section className="sm:mt-20 mt-10 max-w-7xl items-center text-center flex flex-col gap-4 mx-auto px-8">
           <h1 className="text-5xl lg:text-7xl font-(family-name:--font-alike)">
             Listen to{" "}
@@ -32,9 +35,6 @@ export default async function Home() {
           <p className="opacity-50">
             KBHS is not officially affiliated with SPS or Ballard High School.
           </p>
-          <div className="rounded-full bg-red-700/90 text-white text-sm border-red-400 border-2 py-2 px-4 shadow-md shadow-red-400/50">
-            <p>Site under construction, certain links may not work</p>
-          </div>
         </section>
         <div className="w-7/12 h-px bg-black mx-auto my-6 sm:my-12 opacity-10 px-8" />
         <section className="max-w-4xl mx-auto px-8">
