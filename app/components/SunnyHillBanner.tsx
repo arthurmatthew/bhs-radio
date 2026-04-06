@@ -24,7 +24,7 @@ export function SunnyHillBanner() {
     <section className="bg-cyan-700 text-white py-6 px-4 relative">
       <button
         onClick={handleClose}
-        aria-label="Close Sunny Hill Pizza banner"
+        aria-label="Close Sunny Hill banner"
         className="absolute top-3 right-3 text-white/60 hover:text-white transition-colors rounded-full p-1 hover:bg-white/10"
       >
         <svg
@@ -47,7 +47,7 @@ export function SunnyHillBanner() {
           <div className="bg-cyan-800 rounded-full flex items-center justify-center aspect-square p-4">
             <Image
               src="/sunny-hill.png"
-              alt="Sunny Hill Pizza"
+              alt="Sunny Hill"
               width={200}
               height={200}
             />
@@ -60,12 +60,12 @@ export function SunnyHillBanner() {
                 target="_blank"
                 className="underline"
               >
-                Sunny Hill Pizza
+                Sunny Hill
               </a>
             </h1>
             <p className="text-xl sm:text-left text-center">
-              Sunny Hill Pizza is now an official sponsor of Ballard High
-              School's KBHS radio station.
+              Sunny Hill is now an official sponsor of Ballard High School's
+              KBHS radio station.
             </p>
           </div>
         </div>
